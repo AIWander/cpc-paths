@@ -1,0 +1,6 @@
+# CI Leakage Scanner Allowlist — cpc-paths
+# Lines starting with # are comments.
+# Entry = filename (skips entire file) or substring (skips matching lines).
+
+# This crate IS about CPC path resolution — all CPC references in docs are legitimate
+per_machine_setup.md
