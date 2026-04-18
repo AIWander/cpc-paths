@@ -1,5 +1,13 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- **GitHub Actions CI workflow** — push/PR to main runs mojibake scan, cargo check (x64 + ARM64), fmt, clippy, version alignment.
+- **GitHub Actions release workflow** — `v*` tag push validates library builds on both targets.
+- **SECURITY.md** — security policy and reporting instructions.
+
 ## v0.1.0 — 2026-04-15
 
 Initial release. Windows-tested, macOS/Linux candidates in place but unverified.
