@@ -106,7 +106,25 @@ pub fn resolve(desc: &PathDescriptor) -> Result<(PathBuf, ResolutionMethod)> {
         return Ok((p, ResolutionMethod::ConfigFile));
     }
 
-    // 4. Auto-detect.
+    // 4. Derive backups from install (convention: {install}/../backups).
+    if desc.config_key == ConfigKey::BackupsPath {
+        if let Ok((install, _)) = resolve(&INSTALL_DESC) {
+            if let Some(parent) = install.parent() {
+                let derived = parent.join("backups");
+                if derived.exists() {
+                    let _ = write_config_key(&config_file, desc.config_key, &derived);
+                    store_cache(
+                        desc.config_key,
+                        derived.clone(),
+                        ResolutionMethod::PlatformDefault,
+                    );
+                    return Ok((derived, ResolutionMethod::PlatformDefault));
+                }
+            }
+        }
+    }
+
+    // 5. Auto-detect.
     let candidates: Vec<PathBuf> = (desc.candidates_fn)()
         .into_iter()
         .filter(|p| p.exists())
@@ -114,7 +132,7 @@ pub fn resolve(desc: &PathDescriptor) -> Result<(PathBuf, ResolutionMethod)> {
 
     match candidates.len() {
         0 => {
-            // 5a. Interactive prompt.
+            // 6a. Interactive prompt.
             if io::stdin().is_terminal() {
                 eprint!("{} path not found. Enter path: ", desc.name);
                 let mut input = String::new();
@@ -125,7 +143,7 @@ pub fn resolve(desc: &PathDescriptor) -> Result<(PathBuf, ResolutionMethod)> {
                 store_cache(desc.config_key, p.clone(), ResolutionMethod::AutoDetect);
                 return Ok((p, ResolutionMethod::AutoDetect));
             }
-            // 5b. Non-interactive: error.
+            // 6b. Non-interactive: error.
             Err(Error::NotFound {
                 path_type: desc.name.to_string(),
                 env_var: desc.env_var,

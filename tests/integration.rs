@@ -223,7 +223,30 @@ fn set_config_writes_toml() {
 }
 
 // ---------------------------------------------------------------------------
-// 10. health_check_reports_resolution_method
+// 10. backups_derived_from_install
+// ---------------------------------------------------------------------------
+#[test]
+fn backups_derived_from_install() {
+    let (_tmp, _lock) = isolated();
+
+    // Create a fake install dir and a sibling backups dir.
+    let root = tempfile::tempdir().expect("root tempdir");
+    let servers = root.path().join("servers");
+    let backups = root.path().join("backups");
+    fs::create_dir_all(&servers).expect("create servers");
+    fs::create_dir_all(&backups).expect("create backups");
+
+    // Set install via env var, disable auto-detect candidates.
+    env::set_var("CPC_INSTALL_PATH", &servers);
+    env::set_var("CPC_TEST_NO_CANDIDATES", "1");
+    cpc_paths::invalidate_cache();
+
+    let result = cpc_paths::backups_path().expect("should derive backups from install");
+    assert_eq!(result, backups, "backups should be sibling of install");
+}
+
+// ---------------------------------------------------------------------------
+// 11. health_check_reports_resolution_method
 // ---------------------------------------------------------------------------
 #[test]
 fn health_check_reports_resolution_method() {

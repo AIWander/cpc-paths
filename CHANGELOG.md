@@ -2,11 +2,18 @@
 
 ## [Unreleased]
 
+## v0.1.1 — 2026-04-18
+
+### Fixed
+
+- **Backups path resolution fails with `Ambiguous` error** when both `%LOCALAPPDATA%\CPC\backups` and `C:\CPC\backups` exist. Added derive-from-install fallback: if install is resolved and `{install}/../backups/` exists, use it deterministically before auto-detect. Resolves as `PlatformDefault`.
+
 ### Added
 
 - **GitHub Actions CI workflow** — push/PR to main runs mojibake scan, cargo check (x64 + ARM64), fmt, clippy, version alignment.
 - **GitHub Actions release workflow** — `v*` tag push validates library builds on both targets.
 - **SECURITY.md** — security policy and reporting instructions.
+- Integration test `backups_derived_from_install` covering the new resolution path.
 
 ## v0.1.0 — 2026-04-15
 
