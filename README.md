@@ -2,7 +2,7 @@
 
 Portable path discovery for CPC MCP servers. Resolves install, volumes, and per-server data directories with consistent precedence and a hard no-prompt guarantee when stdin is not a tty (critical for MCP servers running stdio).
 
-**Part of [CPC](https://github.com/josephwander-arch) (Copy Paste Compute)** — a multi-agent AI orchestration system built on Claude + MCP (Model Context Protocol). Related repos: [manager](https://github.com/josephwander-arch/manager) · [local](https://github.com/josephwander-arch/local) · [hands](https://github.com/josephwander-arch/hands) · [workflow](https://github.com/josephwander-arch/workflow) · [cpc-breadcrumbs](https://github.com/josephwander-arch/cpc-breadcrumbs)
+**Part of [CPC](https://github.com/AIWander) (Copy Paste Compute)** — a multi-agent AI orchestration system built on Claude + MCP (Model Context Protocol). Related repos: [manager](https://github.com/AIWander/manager) · [local](https://github.com/AIWander/local) · [hands](https://github.com/AIWander/hands) · [workflow](https://github.com/AIWander/workflow) · [cpc-breadcrumbs](https://github.com/AIWander/cpc-breadcrumbs)
 
 This crate is a dependency of CPC's MCP server binaries — most users won't install it directly; it's pulled in automatically via git tag when you build a CPC server from source.
 
@@ -12,7 +12,7 @@ Add to your `Cargo.toml`:
 
 ```toml
 [dependencies]
-cpc-paths = { git = "https://github.com/josephwander-arch/cpc-paths.git", tag = "v0.1.0" }
+cpc-paths = { git = "https://github.com/AIWander/cpc-paths.git", tag = "v0.1.0" }
 ```
 
 ## What it does
@@ -71,7 +71,7 @@ This is critical for MCP servers — a stdin prompt would deadlock the JSON-RPC 
 ## Build from Source
 
 ```bash
-git clone https://github.com/josephwander-arch/cpc-paths.git
+git clone https://github.com/AIWander/cpc-paths.git
 cd cpc-paths
 cargo build
 ```
