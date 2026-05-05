@@ -7,6 +7,7 @@ pub mod config;
 pub mod error;
 pub mod health;
 pub mod platform;
+pub mod process;
 pub mod resolver;
 
 use anyhow::Result;
