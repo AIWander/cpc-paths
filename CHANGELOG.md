@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## v0.1.3 - 2026-06-26
+
+### Added
+- `ensure_kill_on_parent_death()` (Windows) - job object that terminates child processes when the parent process dies.
+
 ## v0.1.2 - 2026-04-29
 
 ### Changed
