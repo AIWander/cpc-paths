@@ -2,7 +2,7 @@
 
 Portable path discovery for CPC MCP servers. Resolves install, volumes, and per-server data directories with consistent precedence and a hard no-prompt guarantee when stdin is not a tty (critical for MCP servers running stdio).
 
-**Part of [CPC](https://github.com/AIWander) (Copy Paste Compute)** — a multi-agent AI orchestration system built on Claude + MCP (Model Context Protocol). Related repos: [manager](https://github.com/AIWander/manager) · [local](https://github.com/AIWander/local) · [hands](https://github.com/AIWander/hands) · [workflow](https://github.com/AIWander/workflow) · [cpc-breadcrumbs](https://github.com/AIWander/cpc-breadcrumbs)
+**Part of [CPC](https://github.com/AIWander) (Copy Paste Compute)** — a multi-agent AI orchestration system built on Claude + MCP (Model Context Protocol). Related repos: [manager](https://github.com/AIWander/manager) · [hands](https://github.com/AIWander/hands) · [cpc-breadcrumbs](https://github.com/AIWander/cpc-breadcrumbs)
 
 This crate is a dependency of CPC's MCP server binaries — most users won't install it directly; it's pulled in automatically via git tag when you build a CPC server from source.
 
